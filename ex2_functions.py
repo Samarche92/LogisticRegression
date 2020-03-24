@@ -21,4 +21,14 @@ def costFunction(theta, X, y):
     grad=np.matmul(np.transpose(X),h-y)
     grad=grad/m
     
+    np.ndarray.flatten(grad)
     return (J,grad)
+
+def objective(theta,X,y):
+    return costFunction(theta,X,y)[0]
+
+def grad(theta,X,y):
+    res=costFunction(theta,X,y)[1]
+    n=len(res)
+    np.ndarray.flatten(res)
+    return res

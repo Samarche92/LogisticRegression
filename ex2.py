@@ -7,6 +7,7 @@ main file for logistic regression project
 import numpy as np
 from matplotlib import pyplot as plt 
 import ex2_functions as fct2
+from scipy.optimize import minimize,fmin_bfgs
 
 
 ## Load Data
@@ -58,7 +59,7 @@ print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
 # Compute and display cost and gradient with non-zero theta
 test_theta = np.reshape(np.array([-24, 0.2, 0.2]),[3,1])
 #test_theta = np.reshape(test_theta,[3,1]) #reshaping into vector
-(cost, grad) = fct2.costFunction(test_theta, X, y);
+(cost, grad) = fct2.costFunction(test_theta, X, y)
 
 print('\nCost at test theta: {}\n'.format(cost))
 print('Expected cost (approx): 0.218\n')
@@ -67,3 +68,27 @@ print(grad)
 print('Expected gradients (approx):\n 0.043\n 2.566\n 2.647\n')
 
 wait = input("Program paused. Press enter to continue \n")
+
+
+#  Run minimize to obtain the optimal theta
+#  This function will return the solution in object res
+
+#res=minimize(lambda t : fct2.costFunction(t,X,y)[0],np.ndarray.flatten(initial_theta),
+ #            jac=lambda t : fct2.costFunction(t,X,y)[1],
+  #           options={'maxiter':400,'disp':True})
+
+#res=minimize(fct2.objective,
+ #            np.reshape(initial_theta,[n+1,]),
+  #           args=(X,y),jac=fct2.grad,
+   #          options={'maxiter':400,'disp':True})
+   
+theta=res.x
+cost=res.fun
+
+# Print theta to screen
+print('Cost at theta found by minimize : {}\n'.format(cost))
+print('Expected cost (approx): 0.203\n')
+print('theta: \n')
+print(theta)
+print('Expected theta (approx):\n')
+print(' -25.161\n 0.206\n 0.201\n')
