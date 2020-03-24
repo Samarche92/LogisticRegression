@@ -7,7 +7,7 @@ main file for logistic regression project
 import numpy as np
 from matplotlib import pyplot as plt 
 import ex2_functions as fct2
-from scipy.optimize import minimize,fmin_bfgs
+from scipy.optimize import minimize,fmin_bfgs,fmin
 
 
 ## Load Data
@@ -82,11 +82,15 @@ wait = input("Program paused. Press enter to continue \n")
   #           args=(X,y),jac=fct2.grad,
    #          options={'maxiter':400,'disp':True})
    
-theta=res.x
-cost=res.fun
+#out=fmin_bfgs(fct2.objective,np.ndarray.flatten(initial_theta), 
+#   fprime=fct2.grad, args=(X,y), maxiter=400, full_output=0, disp=1,)
+   
+theta=fmin(fct2.objective, initial_theta, args=(X,y),maxiter=400,
+                    full_output=0, disp=1)
+
 
 # Print theta to screen
-print('Cost at theta found by minimize : {}\n'.format(cost))
+#print('Cost at theta found by minimize : {}\n'.format(cost))
 print('Expected cost (approx): 0.203\n')
 print('theta: \n')
 print(theta)
