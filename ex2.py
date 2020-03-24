@@ -22,10 +22,14 @@ m=len(X) # number of training examples
 
 y=np.reshape(y,[m,1])  #reshaping into vector
 
+# find positive and negative cases
 pos=np.where(y)
 pos=pos[0]
 neg=np.where(1-y)
 neg=neg[0]
+
+#plot data
+print('Plotting data\n')
 
 plt.figure()
 plt.xlabel("Exam 1 score") 
@@ -34,3 +38,5 @@ plt.plot(X[pos,0],X[pos,1],'yo')
 plt.plot(X[neg,0],X[neg,1],'k+')
 plt.legend(['admitted','not admitted'])
 plt.show()
+
+wait = input("Program paused. Press enter to continue \n")
