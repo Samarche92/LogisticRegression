@@ -23,3 +23,12 @@ def costFunction(theta, X, y):
     
     np.ndarray.flatten(grad)
     return (J,grad)
+
+def predict(theta,X):
+    m=len(X)
+    p=np.zeros([m,1])
+    test=sigmoid(np.matmul(X,theta))
+    pos=np.where(test>=0.5)
+    pos=pos[0]
+    p[pos]=1
+    return p

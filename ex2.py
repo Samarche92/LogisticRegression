@@ -79,7 +79,7 @@ res=minimize(lambda t : fct2.costFunction(t,X,y)[0],np.ndarray.flatten(initial_t
    
 
 # Print theta to screen
-theta=res.x
+theta=np.reshape(res.x,[n+1,1])
 cost=res.fun
  
 print('Cost at theta found by minimize : {}\n'.format(cost))
@@ -95,3 +95,19 @@ plot_y = theta[0]+theta[1]*plot_x
 plot_y = -plot_y/theta[2]
 plt.plot(plot_x,plot_y)
 plt.show()
+
+wait = input("Program paused. Press enter to continue \n")
+
+# Predict probability for a student with score 45 on exam 1 and score 85 on exam 2 
+
+prob = fct2.sigmoid(np.matmul(np.array([1, 45, 85]),theta))
+print('For a student with scores 45 and 85, we predict an admission probability of {}\n'
+      .format(prob))
+print('Expected value: 0.775 +/- 0.002\n\n');
+
+# Compute accuracy on our training set
+p = fct2.predict(theta, X)
+
+print('Train Accuracy: {}\n'.format(np.mean((p == y))*100))
+print('Expected accuracy (approx): 89.0\n');
+print('\n');
