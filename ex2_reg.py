@@ -43,3 +43,18 @@ print('Gradient at initial theta (zeros) - first five values only:\n')
 print(grad[0:5])
 print('Expected gradients (approx) - first five values only:\n')
 print(' 0.0085\n 0.0188\n 0.0001\n 0.0503\n 0.0115\n')
+
+wait = input("Program paused. Press enter to continue \n")
+
+# Compute and display cost and gradient with all-ones theta and L = 10
+test_theta = np.ones([np.shape(X)[1],1])
+(cost, grad) = fct2.costFunctionReg(test_theta, X, y, 10)
+
+print('\nCost at test theta (with L = 10): {}\n'.format(cost))
+print('Expected cost (approx): 3.16\n')
+print('Gradient at test theta - first five values only:\n')
+print(grad[0:5])
+print('Expected gradients (approx) - first five values only:\n')
+print(' 0.3460\n 0.1614\n 0.1948\n 0.2269\n 0.0922\n')
+
+wait = input("Program paused. Press enter to continue \n")
