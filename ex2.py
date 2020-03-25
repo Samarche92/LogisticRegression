@@ -7,7 +7,7 @@ main file for logistic regression project
 import numpy as np
 from matplotlib import pyplot as plt 
 import ex2_functions as fct2
-from scipy.optimize import minimize,fmin_bfgs,fmin
+from scipy.optimize import minimize
 
 
 ## Load Data
