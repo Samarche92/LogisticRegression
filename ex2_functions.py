@@ -18,13 +18,12 @@ def plotData(X,y,label_1='feature 1',label_2='feature 2'):
 
     #plot data
     print('Plotting data\n')
-    plt.figure()
+    fig=plt.figure()
     plt.xlabel(label_1) 
     plt.ylabel(label_2) 
     plt.plot(X[pos,0],X[pos,1],'yo') 
     plt.plot(X[neg,0],X[neg,1],'k+')
     plt.legend(['Positive','Negative'])
-    plt.show()
 
 def sigmoid(z):
     return(1 / (1 + np.exp(-z)))
@@ -67,6 +66,7 @@ def mapFeature(x1,x2,degree=6):
     return out
 
 def costFunctionReg(theta, X, y, L):
+    """ compute regularized cost function and gradient """
     
     m = len(y) # number of training examples
     n=len(theta)
@@ -81,3 +81,31 @@ def costFunctionReg(theta, X, y, L):
     grad+=L*theta2/m
     
     return (J,grad)
+
+def plotDecisionBoundary(theta,X,y,label_1='feature 1',label_2='feature 2'):
+    """ plot training data and decision boundary """
+    
+    plotData(X,y,label_1,label_2)
+    
+    if np.shape(X)[1]<=3:
+        plot_x = np.linspace(np.min(X[:,1])-2,np.max(X[:,1])+2)
+        plot_y = theta[0]+theta[1]*plot_x
+        plot_y = -plot_y/theta[2]
+        plt.plot(plot_x,plot_y)
+        plt.show()
+    else:
+        # Here is the grid range
+        u = np.linspace(-1, 1.5)
+        v = np.linspace(-1, 1.5)
+        
+        z=np.zeros([len(u),len(v)])
+        
+        # Evaluate z = theta*x over the grid
+        for i in range(len(u)):
+            for j in range(len(v)):
+                z[i,j]=np.matmul(mapFeature(u[i],v[j]),theta)
+        
+        plt.contour(u,v,np.transpose(z),0)
+    
+        
+    

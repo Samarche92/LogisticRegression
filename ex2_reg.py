@@ -4,7 +4,6 @@
 main file for regularized logistic regression
 """
 import numpy as np
-from matplotlib import pyplot as plt 
 import ex2_functions as fct2
 from scipy.optimize import minimize
 
@@ -70,3 +69,5 @@ res=minimize(lambda t : fct2.costFunctionReg(t,X,y,L)[0],np.ndarray.flatten(init
 # Retrieve solution from res object
 theta=np.reshape(res.x,[n,1])
 cost=res.fun
+
+fct2.plotDecisionBoundary(theta,X,y,'test score 1', 'test score 2')
