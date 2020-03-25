@@ -23,22 +23,7 @@ n = np.size(X,1)
 
 y=np.reshape(y,[m,1])  #reshaping into vector
 
-# find positive and negative cases
-pos=np.where(y)
-pos=pos[0]
-neg=np.where(1-y)
-neg=neg[0]
-
-#plot data
-print('Plotting data\n')
-
-plt.figure()
-plt.xlabel("Exam 1 score") 
-plt.ylabel("Exam 2 score") 
-plt.plot(X[pos,0],X[pos,1],'yo') 
-plt.plot(X[neg,0],X[neg,1],'k+')
-plt.legend(['admitted','not admitted'])
-plt.show()
+fct2.plotData(X,y,'Exam 1 score','Exam 2 score')
 
 wait = input("Program paused. Press enter to continue \n")
 
@@ -78,7 +63,7 @@ res=minimize(lambda t : fct2.costFunction(t,X,y)[0],np.ndarray.flatten(initial_t
             options={'maxiter':400,'disp':True})
    
 
-# Print theta to screen
+# Retrieve solution from res object
 theta=np.reshape(res.x,[n+1,1])
 cost=res.fun
  
