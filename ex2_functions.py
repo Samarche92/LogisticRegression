@@ -69,9 +69,11 @@ def mapFeature(x1,x2,degree=6):
 def costFunctionReg(theta, X, y, L):
     
     m = len(y) # number of training examples
+    n=len(theta)
+    theta=np.reshape(theta,[n,1])
 
     (J,grad)=costFunction(theta,X,y)
-
+    
     theta2=np.copy(theta)
     theta2[0]=0
     

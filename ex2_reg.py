@@ -26,9 +26,10 @@ wait = input("Program paused. Press enter to continue \n")
 # Add Polynomial Features
 
 X = fct2.mapFeature(X[:,0],X[:,1])
+n=np.shape(X)[1]
 
 # Initialize fitting parameters
-initial_theta = np.zeros([np.shape(X)[1],1])
+initial_theta = np.zeros([n,1])
 
 # Set regularization parameter L to 1
 L = 1;
@@ -58,3 +59,14 @@ print('Expected gradients (approx) - first five values only:\n')
 print(' 0.3460\n 0.1614\n 0.1948\n 0.2269\n 0.0922\n')
 
 wait = input("Program paused. Press enter to continue \n")
+
+#  Run minimize to obtain the optimal theta
+#  This function will return the solution in object res
+
+res=minimize(lambda t : fct2.costFunctionReg(t,X,y,L)[0],np.ndarray.flatten(initial_theta),
+            jac=lambda t : np.ndarray.flatten(fct2.costFunctionReg(t,X,y,L)[1]),
+            options={'maxiter':400,'disp':True})
+
+# Retrieve solution from res object
+theta=np.reshape(res.x,[n,1])
+cost=res.fun
