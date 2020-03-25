@@ -48,7 +48,7 @@ X=np.column_stack((np.ones([m,]),data[:,0:2]))
 initial_theta=np.zeros([n+1,1]) #initialize fitting parameters
 
 # Compute and display initial cost and gradient
-fct2.costFunction(initial_theta, X, y)
+(cost,grad)=fct2.costFunction(initial_theta, X, y)
 
 print('Cost at initial theta (zeros): {}\n'.format(cost))
 print('Expected cost (approx): 0.693\n')
@@ -75,7 +75,7 @@ wait = input("Program paused. Press enter to continue \n")
 
 res=minimize(lambda t : fct2.costFunction(t,X,y)[0],np.ndarray.flatten(initial_theta),
             jac=lambda t : np.ndarray.flatten(fct2.costFunction(t,X,y)[1]),
-            options={'maxiter':400,'disp':False})
+            options={'maxiter':400,'disp':True})
    
 
 # Print theta to screen
@@ -88,3 +88,10 @@ print('theta: \n')
 print(theta)
 print('Expected theta (approx):\n')
 print(' -25.161\n 0.206\n 0.201\n')
+
+# Plot decision boundary
+plot_x = np.linspace(np.min(X[:,1])-2,np.max(X[:,1])+2)
+plot_y = theta[0]+theta[1]*plot_x
+plot_y = -plot_y/theta[2]
+plt.plot(plot_x,plot_y)
+plt.show()
