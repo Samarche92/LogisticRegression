@@ -9,7 +9,6 @@ from matplotlib import pyplot as plt
 import ex2_functions as fct2
 from scipy.optimize import minimize
 
-
 ## Load Data
 # The first two columns contains the exam scores and the third column
 # contains the label.
@@ -75,11 +74,7 @@ print('Expected theta (approx):\n')
 print(' -25.161\n 0.206\n 0.201\n')
 
 # Plot decision boundary
-plot_x = np.linspace(np.min(X[:,1])-2,np.max(X[:,1])+2)
-plot_y = theta[0]+theta[1]*plot_x
-plot_y = -plot_y/theta[2]
-plt.plot(plot_x,plot_y)
-plt.show()
+fct2.plotDecisionBoundary(theta,X,y,'Exam 1 score','Exam 2 score')
 
 wait = input("Program paused. Press enter to continue \n")
 

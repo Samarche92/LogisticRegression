@@ -71,4 +71,5 @@ res=minimize(lambda t : fct2.costFunctionReg(t,X,y,L)[0],np.ndarray.flatten(init
 theta=np.reshape(res.x,[n,1])
 cost=res.fun
 
+# Plot decision boundary
 fct2.plotDecisionBoundary(theta,X,y,'test score 1', 'test score 2')
