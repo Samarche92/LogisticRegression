@@ -18,6 +18,7 @@ m=len(X)
 y = data[:,2]
 
 y=np.reshape(y,[m,1]) 
+num=0
 
 fct2.plotData(X,y,'test score 1', 'test score 2')
 wait = input("Program paused. Press enter to continue \n")
